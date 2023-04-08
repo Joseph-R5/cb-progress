@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    padding: 0 2rem;
+}
+
+.right {
+    width: 50%;
+    height: 100%;
+    border: 10px solid green;
+}
+
+.title {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    margin-bottom: 2rem;
+}
+
+.description {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 3rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+.button:hover {
+    background-color: #0062cc;
+}
