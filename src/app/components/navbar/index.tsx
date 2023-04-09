@@ -1,26 +1,29 @@
 import Link from 'next/link';
 import styles from '../../styles/navbar.module.css';
 
+const navbarItems = [
+  {id: 'home', title: 'Home', link: '/'},
+  {id: 'calculator', title: 'Calculator', link: '/calculator'},
+  {id: 'calorieCounter', title: 'Calorie Counter', link: '/calorieCounter'},
+  {id: 'workoutPlanner', title: 'Workout Planner', link: '/workoutPlanner'}
+]
+
 const Navbar = () => {
   return (
     <nav className={styles.nav}>
           <div className={styles.nav__title}>Cut-Bulk Progression Tracker</div>
       <ul className={styles.nav__list}>
-        <li className={styles.nav__item}>
-          <Link href="/" className={styles.nav__link}>
-            Home
-          </Link>
-        </li>
-        <li className={styles.nav__item}>
-          <Link href="/calculator" className={styles.nav__link}>
-            Calculator
-          </Link>
-        </li>
-        <li className={styles.nav__item}>
-          <Link href="/calorie-counter" className={styles.nav__link}>
-            Calorie Counter
-          </Link>
-        </li>
+        {
+          navbarItems.map((item) => {
+            return (
+              <li key={item.id} className={styles.nav__item}>
+                <Link href={item.link} className={styles.nav__link}>
+                  {item.title}
+                </Link>
+              </li>
+            )
+          })
+        }
       </ul>
     </nav>
   );
