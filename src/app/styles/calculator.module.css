@@ -1,0 +1,96 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #6c7783, #4d4d8c);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    margin-top: 6rem;
+    border: 1px solid #2096F3;
+    box-shadow: 0 5px 5px -3px #0003, 0 8px 10px 1px #00000024, 0 3px 14px 2px #0000001f;
+}
+
+.results {
+    width: 50%;
+    /* height: 40vh; */
+    padding: 0 2rem;
+    margin-top: 6rem;
+    border: 2px solid red;
+}
+
+.reference {
+    width: 50%;
+    /* height: 35vh; */
+    margin: auto;
+    border: 2px solid red;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    padding-top: 5px;
+}
+
+.label {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.input {
+    font-family: inherit;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.units {
+    font-family: inherit;
+    font-size: 1rem;
+    /* position: absolute; */
+    /* right: 0.5rem; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+}
+
+.formBanner {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    background: #2096F3;
+    color: white;
+    padding: 10px;
+}
+
+.metricButtons {
+    display: flex;
+    width:100%;
+}
+
+.metricButton {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    width:50%;
+    font-size: 1.5rem;
+    padding: 5px;
+}
