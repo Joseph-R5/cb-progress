@@ -1,0 +1,31 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #6c7783, #4d4d8c);
+}
+
+.humanBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.torso {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.arm {
+    margin: 0 -10px;
+}
+
+.chest {
+    margin: 0 10px;
+}
