@@ -1,0 +1,96 @@
+.bar {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #ddd;
+  position: relative;
+}
+
+.bar:after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  border: 10px solid transparent;
+  border-top: 15px solid #2096F3;
+}
+
+.barSegment {
+  flex-grow: 1;
+}
+
+.essential {
+  background-color: orange;
+}
+
+.athletes {
+  background-color: rgb(112, 221, 112);
+}
+
+.fitness {
+  background-color: green;
+}
+
+.average {
+  background-color: rgb(199, 199, 84);
+}
+
+.obese {
+  background-color: red;
+}
+
+.barCategories {
+  font-size: 0.8rem;
+  color: rgb(252, 248, 248);
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  margin-top: 3rem;
+  border: 1px solid #2096F3;
+  box-shadow: 0 5px 5px -3px #0003, 0 8px 10px 1px #00000024, 0 3px 14px 2px #0000001f;
+}
+
+.formBanner {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  background: #2096F3;
+  color: white;
+  padding: 10px;
+}
+
+.mainHeading {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.resultsTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.resultsTable th,
+.resultsTable td {
+  text-align: center;
+  padding: 8px;
+  background-color: #f2f2f2;
+  font-size: 1.1rem;
+}
+
+.resultsTable tr:hover {
+  cursor: pointer;
+}
+
+.resultsTable tr:nth-child(odd) td {
+  background-color: #dcdcdc;
+}
