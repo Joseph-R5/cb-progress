@@ -1,19 +1,23 @@
-import styles from '../styles/calculator.module.css';
+"use client";
+import styles from '../styles/calculator/page.module.css';
 import Form from './form';
+import { useState } from 'react';
+import { FormValues } from '../types/form';
+import { PageProps } from '../types/pageProps';
 
-const CalculatorPage = () => {
+const CalculatorPage: React.FC<PageProps> = ({ onNextStep }) => {
+    const [formValues, setFormValues] = useState<FormValues>();
+
+    const handleFormSubmit = (formValues: FormValues) => {
+        setFormValues(formValues);
+        onNextStep(1);
+    }
+
     return (
-        <main className={styles.main}>
-            <div className={styles.container}>
-                <Form/>
-                <div className={styles.results}>
-                    <h1>Results</h1>
-                </div>
-            </div>
-            <div className={styles.reference}>
-                <h1>Ref</h1>
-            </div>
-        </main>
+        <div className={styles.container}>
+            <div>Progress bar goes here</div>
+            <Form onSubmit={handleFormSubmit} />
+        </div>
     )
 };
 

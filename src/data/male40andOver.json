@@ -1,0 +1,6 @@
+[
+    {"Category": "Underfat", "bodyFat": "Under 11%", "Weight": "under 61.2kg"},
+    {"Category": "Healthy", "bodyFat": "11 to 21.9%", "Weight": "61.2 to 69.7kg"},
+    {"Category": "Overfat", "bodyFat": "22 to 27.9%", "Weight": "69.8 to 75.5kg"},
+    {"Category": "Obese", "bodyFat": "28% and over", "Weight": "75.6kg and over"}
+]

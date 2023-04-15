@@ -1,0 +1,24 @@
+.genderContainer {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.genderOption {
+    margin-left: 25px;
+    margin-right: 25px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.genderOption h2{
+}
+
+.genderOption:hover {
+    background-color: lightgray;
+}
