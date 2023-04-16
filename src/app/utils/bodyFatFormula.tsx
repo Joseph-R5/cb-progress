@@ -1,7 +1,7 @@
 import { FormValues } from "../types/form";
 import { BodyCompositionResult } from '../types/bodyFatTypes';
 
-const calculateBodyFatPercentage = (formValues: FormValues): BodyCompositionResult => {
+const calculateBodyFatPercentage = (formValues: any): BodyCompositionResult => {
     const gender = formValues.gender;
     const age = Number(formValues.age);
     const weight = Number(formValues.weight);
