@@ -23,7 +23,7 @@ const Questions: React.FC<PageProps> = ({ onNextStep }) => {
 
             setTimeout(() => {
                 container.classList.remove('wipe-out-right');
-                onNextStep(nextStep);
+                onNextStep(nextStep, userDetails);
             }, 1050);
         }
     }

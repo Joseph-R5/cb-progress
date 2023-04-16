@@ -1,5 +1,5 @@
 export interface PageProps {
-    onNextStep: (next: number) => void;
+    onNextStep: (next: number, userDetails: UpdatedUserDetails) => void;
 }
 
 export interface ProgressProps {
