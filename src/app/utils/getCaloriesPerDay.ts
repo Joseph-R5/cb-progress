@@ -14,24 +14,27 @@ export const calculateBasalMetabolicRate = (gender: Gender, age: number, height:
     return bmr;
 }
 
-export const calculateCaloriesToLoseWeight = ({ gender, age, height, weight, activityLevel }: UpdatedUserDetails, setting: SettingType): number => {
-    const basalMetabolicRate = calculateBasalMetabolicRate(gender, age, height, weight);
-    let dailyCalorieRequirement = basalMetabolicRate;
+export const calculateCaloriesToLoseWeight = ({ gender, age, height, weight, activityLevel }: UpdatedUserDetails, setting: SettingType, isOnCut: boolean): number => {
+    const bmr: number = calculateBasalMetabolicRate(gender, age, height, weight);
 
+    // Multiply BMR by activity factor to estimate TDEE
+    let tdee: number;
     switch (activityLevel) {
         case 'light':
-            dailyCalorieRequirement += 100;
+            tdee = bmr * 1.375;
             break;
         case 'moderate':
-            dailyCalorieRequirement += 200;
+            tdee = bmr * 1.55;
             break;
         case 'intense':
-            dailyCalorieRequirement += 300;
+            tdee = bmr * 1.725;
             break;
         default:
+            tdee = bmr;
             break;
     }
 
+    // Calculate calorie deficit based on the chosen setting
     let calorieDeficitPerDay: number = 0;
     switch (setting) {
         case 'mild':
@@ -47,8 +50,9 @@ export const calculateCaloriesToLoseWeight = ({ gender, age, height, weight, act
             break;
     }
 
-    const calorieDeficitPerWeek = calorieDeficitPerDay * 7;
-    const caloriesToLoseWeight = dailyCalorieRequirement - calorieDeficitPerWeek;
+    if (isOnCut) {
+        return Math.round(tdee - calorieDeficitPerDay);
+    }
 
-    return Math.round(caloriesToLoseWeight);
+    return Math.round(tdee + calorieDeficitPerDay);
 }

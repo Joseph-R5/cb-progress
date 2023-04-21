@@ -2,9 +2,8 @@ import { BarList, Card, Title, Bold, Flex, Text } from "@tremor/react";
 
 const data = [
     {
-        name: 'Twitter',
+        name: 'Twitters',
         value: 456,
-        href: 'https://twitter.com/tremorlabs',
         icon: function GoogleIcon() {
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-2.5 fill-blue-500" viewBox="0 0 24 24" width="20" height="20">
@@ -18,7 +17,6 @@ const data = [
     {
         name: 'Google',
         value: 351,
-        href: 'https://google.com',
         icon: function GoogleIcon() {
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-2.5 fill-slate-500" viewBox="0 0 24 24" width="20" height="20">
@@ -31,7 +29,6 @@ const data = [
     {
         name: 'GitHub',
         value: 271,
-        href: 'https://github.com/tremorlabs/tremor',
         icon: function GitHubIcon() {
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-2.5 fill-slate-900" viewBox="0 0 24 24" width="20" height="20">
@@ -44,7 +41,6 @@ const data = [
     {
         name: 'Reddit',
         value: 191,
-        href: 'https://reddit.com',
         icon: function RedditIcon() {
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-2.5 fill-orange-500" viewBox="0 0 24 24" width="20" height="20">
@@ -70,18 +66,24 @@ const data = [
 ];
 
 const CurrentStats = () => (
-  <Card className="max-w-lg">
-    <Title>Current Stats vs Expected Stats goes here</Title>
-    <Flex className="mt-4">
-      <Text>
-        <Bold>Source</Bold>
-      </Text>
-      <Text>
-        <Bold>Visits</Bold>
-      </Text>
-    </Flex>
-    <BarList data={data} className="mt-2" />
-  </Card>
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <Card className="max-w-lg">
+            <Title>Current Stats vs Expected Stats goes here</Title>
+            <Flex className="mt-4">
+                <Text>
+                    <Bold>Source</Bold>
+                </Text>
+                <Text>
+                    <Bold>Visits</Bold>
+                </Text>
+            </Flex>
+            <BarList data={data} className="mt-2" />
+        </Card>
+        <Card className="max-w-lg">
+            <Title>Food pie chart goes here showing how much protein</Title>
+        </Card>
+    </div>
+
 );
 
 export default CurrentStats;

@@ -1,4 +1,5 @@
 import calculateBodyFatPercentage from "./bodyFatFormula";
+import { getExpectedWeights } from "./calculateWeightJourney";
 import { getBodyFat } from "./getBodyFatPercentage";
 import { calculateCaloriesToLoseWeight } from "./getCaloriesPerDay";
 
@@ -19,21 +20,21 @@ const getMetrics = (bodyFatPercentage: any, gender: any, setting: any) => {
     return { result, goal };
 };
 
-const getTargets = (data: any, setting: any) => {
+const getTargets = (data: any, setting: any, isOnCut: boolean) => {
     let kcalPerDay = 0, weightLostPerWeek = 0;
 
     switch (setting) {
         case MILD:
             weightLostPerWeek = 0.25;
-            kcalPerDay = calculateCaloriesToLoseWeight(data, setting);
+            kcalPerDay = calculateCaloriesToLoseWeight(data, setting, isOnCut);
             break;
         case RECOMMENDED:
             weightLostPerWeek = 0.5;
-            kcalPerDay = calculateCaloriesToLoseWeight(data, setting);
+            kcalPerDay = calculateCaloriesToLoseWeight(data, setting, isOnCut);
             break;
         case EXTREME:
             weightLostPerWeek = 1;
-            kcalPerDay = calculateCaloriesToLoseWeight(data, setting);
+            kcalPerDay = calculateCaloriesToLoseWeight(data, setting, isOnCut);
             break;
         default:
             break;
@@ -45,7 +46,10 @@ const getTargets = (data: any, setting: any) => {
 const generateMetrics = (data: any, setting: any) => {
     const bodyFatPercentage = getBodyFat(data);
     const { goal } = getMetrics(bodyFatPercentage, data.gender, setting);
-    const { kcalPerDay, weightLostPerWeek } = getTargets(data, setting);
+    const { kcalPerDay, weightLostPerWeek } = getTargets(data, setting, bodyFatPercentage > 20);
+    const x = getExpectedWeights(bodyFatPercentage, kcalPerDay, data.weight, setting);
+
+    console.table(x);
 
     return [{
         title: 'Body Fat Percentage',
