@@ -1,4 +1,5 @@
 import { BarList, Card, Title, Bold, Flex, Text } from "@tremor/react";
+import ProteinPie from "./proteinPie";
 
 const data = [
     {
@@ -65,25 +66,29 @@ const data = [
     },
 ];
 
-const CurrentStats = () => (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <Card className="max-w-lg">
-            <Title>Current Stats vs Expected Stats goes here</Title>
-            <Flex className="mt-4">
-                <Text>
-                    <Bold>Source</Bold>
-                </Text>
-                <Text>
-                    <Bold>Visits</Bold>
-                </Text>
-            </Flex>
-            <BarList data={data} className="mt-2" />
-        </Card>
-        <Card className="max-w-lg">
-            <Title>Food pie chart goes here showing how much protein</Title>
-        </Card>
-    </div>
-
-);
+const CurrentStats = ({resultData}: any) => {
+    const caloriesPerDay = resultData?.metrics[1].metric;
+    let caloriesNum = 0;
+    if (caloriesPerDay) {
+        caloriesNum = parseInt(caloriesPerDay.replace(' kcal', ''));
+    }
+    return (
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <Card className="max-w-lg">
+                <Title style={{textAlign:"center"}}>Body Composition</Title>
+                <Flex className="mt-4">
+                    <Text>
+                        <Bold>Source</Bold>
+                    </Text>
+                    <Text>
+                        <Bold>Visits</Bold>
+                    </Text>
+                </Flex>
+                <BarList data={data} className="mt-2" />
+            </Card>
+            {caloriesNum && <ProteinPie caloriesPerDay={caloriesNum}/>}
+        </div>
+    );
+};
 
 export default CurrentStats;

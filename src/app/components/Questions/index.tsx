@@ -40,7 +40,7 @@ const Questions: React.FC<PageProps> = ({ onNextStep }) => {
     };
 
     useEffect(() => {
-        console.log('User details', userDetails);
+        // console.log('User details', userDetails);
     }, [userDetails]);
 
     let currentComponent = null;

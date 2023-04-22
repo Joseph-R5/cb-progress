@@ -1,7 +1,9 @@
 import calculateBodyFatPercentage from "./bodyFatFormula";
-import { getExpectedWeights } from "./calculateWeightJourney";
+import { getWeightDates } from "./calculateWeightJourney";
+import { convertLastDate, getDaySuffix } from "./dateFormatter";
 import { getBodyFat } from "./getBodyFatPercentage";
 import { calculateCaloriesToLoseWeight } from "./getCaloriesPerDay";
+import { getTargetWeight } from "./getTargetWeight";
 
 const MILD = 'mild';
 const RECOMMENDED = 'recommended';
@@ -47,9 +49,8 @@ const generateMetrics = (data: any, setting: any) => {
     const bodyFatPercentage = getBodyFat(data);
     const { goal } = getMetrics(bodyFatPercentage, data.gender, setting);
     const { kcalPerDay, weightLostPerWeek } = getTargets(data, setting, bodyFatPercentage > 20);
-    const x = getExpectedWeights(bodyFatPercentage, kcalPerDay, data.weight, setting);
-
-    console.table(x);
+    const weightDates = getWeightDates(bodyFatPercentage, data.weight, 75, setting);
+    const lastDate = weightDates.slice(-1)[0].date;
 
     return [{
         title: 'Body Fat Percentage',
@@ -63,32 +64,37 @@ const generateMetrics = (data: any, setting: any) => {
     },
     {
         title: 'Target Weight date',
-        metric: '25/12',
-    }]
-}
+        metric: convertLastDate(lastDate),
+    }
+    ]
+};
 
 const shouldCut = (data: any) => {
     const { bodyFatPercentage } = calculateBodyFatPercentage(data);
     const { result } = getMetrics(bodyFatPercentage, data.gender, 'recommended');
-
     return result === 'cut';
 }
 
 export const getResultsFormattedData = (data: any) => {
+    const bodyFat = getBodyFat(data);
+
     return {
         CUT: shouldCut(data),
-        BODY_FAT: getBodyFat(data),
+        BODY_FAT: bodyFat,
         MILD: {
             metrics: generateMetrics(data, MILD),
-            bodyComposition: []
+            bodyComposition: [],
+            weightDates: getWeightDates(bodyFat, data.weight, 75, MILD)
         },
         RECOMMENDED: {
             metrics: generateMetrics(data, RECOMMENDED),
-            bodyComposition: []
+            bodyComposition: [],
+            weightDates: getWeightDates(bodyFat, data.weight, 75, RECOMMENDED)
         },
         EXTREME: {
             metrics: generateMetrics(data, EXTREME),
-            bodyComposition: []
+            bodyComposition: [],
+            weightDates: getWeightDates(bodyFat, data.weight, 75, EXTREME)
         }
     };
 }

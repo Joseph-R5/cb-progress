@@ -5,7 +5,7 @@ const Targets = ({ resultData }: { resultData: any }) => {
         <Grid className="gap-6" numColsSm={2} numColsLg={3}>
             {resultData?.metrics.map((item: any) => {
                 return (
-                    <Card key={item.title}>
+                    <Card key={item.title} style={{ marginBottom: "1.25rem", marginRight: "0.5rem" }}>
                         <Flex alignItems="start">
                             <Text>{item.title}</Text>
                         </Flex>

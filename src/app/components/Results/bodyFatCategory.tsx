@@ -3,9 +3,9 @@ import { Grid, Flex, Metric, Card, CategoryBar, Text, Toggle, ToggleItem } from 
 const BodyFatCategory = ({ results, setSetting }: { results: any, setSetting: any }) => {
     return (
         <Grid className="gap-6 mx-auto">
-            <Flex alignItems="center" justifyContent='center'>
-                <Metric> We recommend you start {results.CUT ? 'cutting' : 'bulking'} </Metric>
-                {/* <Button>Start Again</Button> */}
+            <Flex alignItems="center" justifyContent='center' style={{marginBottom: "1.25rem"}}>
+                <Metric> We Recommend You Start {results.CUT ? 'Cutting 🔪' : 'Bulking 💪'} </Metric>
+
             </Flex>
             <Card className="max-w-sm">
                 <Flex alignItems='center' justifyContent='center'>
@@ -21,6 +21,7 @@ const BodyFatCategory = ({ results, setSetting }: { results: any, setSetting: an
             <Toggle
                 color="zinc"
                 defaultValue="2"
+                style={{marginTop: "0.75rem"}}
             >
                 <ToggleItem value="1" text="Mild" onClick={() => setSetting('mild')} />
                 <ToggleItem value="2" text="Recommended" onClick={() => setSetting('recommended')} />
