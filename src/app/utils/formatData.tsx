@@ -1,5 +1,6 @@
 import calculateBodyFatPercentage from "./bodyFatFormula";
 import { getWeightDates } from "./calculateWeightJourney";
+import generateBodyFatResults from "./calculatorResultsGenerator";
 import { convertLastDate, getDaySuffix } from "./dateFormatter";
 import { getBodyFat } from "./getBodyFatPercentage";
 import { calculateCaloriesToLoseWeight } from "./getCaloriesPerDay";
@@ -83,18 +84,16 @@ export const getResultsFormattedData = (data: any) => {
         BODY_FAT: bodyFat,
         MILD: {
             metrics: generateMetrics(data, MILD),
-            bodyComposition: [],
             weightDates: getWeightDates(bodyFat, data.weight, 75, MILD)
         },
         RECOMMENDED: {
             metrics: generateMetrics(data, RECOMMENDED),
-            bodyComposition: [],
             weightDates: getWeightDates(bodyFat, data.weight, 75, RECOMMENDED)
         },
         EXTREME: {
             metrics: generateMetrics(data, EXTREME),
-            bodyComposition: [],
             weightDates: getWeightDates(bodyFat, data.weight, 75, EXTREME)
-        }
+        },
+        BODY_COMPOSITION: generateBodyFatResults(data)
     };
 }

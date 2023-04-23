@@ -2,7 +2,6 @@ import { getAreaGraphData } from "@/app/utils/generateAreaGraphData";
 import { Card, Title, AreaChart } from "@tremor/react";
 
 const WeightGraph = ({ results }: { results: any }) => {
-  console.log(results);
   const data = getAreaGraphData(results);
 
   return (

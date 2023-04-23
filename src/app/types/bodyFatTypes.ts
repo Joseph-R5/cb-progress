@@ -4,11 +4,16 @@ export type BodyCompositionResult = {
     bodyFatWeight: number;
 }
 
+export type IBodyFatMass = {
+    value: number;
+    min: number;
+    max: number;
+    range: string
+}
+
 export type BodyFatResults = {
     category: string;
-    bodyFatMass: string;
-    leanBodyMass: string;
-    idealBodyFat: string
-    bodyFatToLose: string
+    bodyFatMass: IBodyFatMass;
+    leanBodyMass: IBodyFatMass;
     bmi: string;
 }

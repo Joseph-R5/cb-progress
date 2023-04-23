@@ -3,20 +3,10 @@ import { Grid, Flex, Metric, Card, CategoryBar, Text, Toggle, ToggleItem } from 
 const BodyFatCategory = ({ results, setSetting }: { results: any, setSetting: any }) => {
     return (
         <Grid className="gap-6 mx-auto">
-            <Flex alignItems="center" justifyContent='center' style={{marginBottom: "1.25rem"}}>
+            <Card className="max-w-sm mx-auto">
+            <Flex alignItems="center" justifyContent='center'>
                 <Metric> We Recommend You Start {results.CUT ? 'Cutting 🔪' : 'Bulking 💪'} </Metric>
-
             </Flex>
-            <Card className="max-w-sm">
-                <Flex alignItems='center' justifyContent='center'>
-                    <Text>Body Fat %</Text>
-                </Flex>
-                <CategoryBar
-                    categoryPercentageValues={[10, 10, 10, 70]}
-                    showAnimation={true}
-                    colors={["orange", "emerald", "yellow", "rose"]}
-                    percentageValue={results.BODY_FAT}
-                />
             </Card>
             <Toggle
                 color="zinc"

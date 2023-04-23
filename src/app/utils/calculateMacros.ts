@@ -13,7 +13,5 @@ export const getMacros = (caloriesPerDay: number): IMacros => {
         { type: 'Sugar', amount: sugarGrams },
     ];
 
-    console.log('macros', macros)
-
     return macros;
 };

@@ -15,5 +15,5 @@ export const convertLastDate = (lastDate: any) => {
     const day = parseInt(lastDate.slice(8, 10));
     const suffix = getDaySuffix(day);
     
-    return `${day}${suffix} ${month} ${year}`;
+    return `${day}${suffix} ${month}`;
 }
