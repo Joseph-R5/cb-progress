@@ -16,10 +16,6 @@ const CurrentStats = ({ resultData, bodyComposition }: any) => {
         leanBodyMassColor = 'rose';
     }
 
-    console.log('bodyComposition.bodyFatMass.value ', bodyComposition.bodyFatMass.value );
-    console.log(' bodyComposition.bodyFatMass.min', bodyComposition.bodyFatMass.min);
-    console.log(' bodyComposition.bodyFatMass.max', bodyComposition.bodyFatMass.max);
-
     if ( bodyComposition.bodyFatMass.value < bodyComposition.bodyFatMass.min) {
         bodyFatMassColor = 'orange'
     } else if (bodyComposition.bodyFatMass.value  > bodyComposition.bodyFatMass.max) {

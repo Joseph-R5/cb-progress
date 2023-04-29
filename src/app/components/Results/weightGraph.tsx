@@ -4,6 +4,9 @@ import { Card, Title, AreaChart } from "@tremor/react";
 const WeightGraph = ({ results }: { results: any }) => {
   const data = getAreaGraphData(results);
 
+  const minValue = data[0]?.Mild - 2;
+  const maxValue = data[4]?.Extreme + 2;
+
   return (
     <Card className="mt-8" style={{ marginTop: "1.25rem"}}>
       <Title style={{textAlign: 'center'}}>Weight Over Time</Title>
@@ -12,12 +15,12 @@ const WeightGraph = ({ results }: { results: any }) => {
         data={data}
         index="date"
         categories={['Mild', 'Recommended', 'Extreme']}
-        colors={["indigo", "fuchsia", "cyan"]}
+        colors={["fuchsia", "indigo",  "cyan"]}
         showAnimation={true}
         showGradient={false}
         showGridLines={false}
-        minValue={66} // TODO
-        maxValue={76}
+        minValue={minValue}
+        maxValue={maxValue}
       />
     </Card>
   );
