@@ -33,7 +33,13 @@ export default function Home() {
       currentComponent = <Questions onNextStep={handleStep} />;
       break;
     case 3:
-      currentComponent = results ? <Results results={results} userDetails={data} /> : <></>;
+      const propsToPass = {
+        results,
+        userDetails: data,
+        startAgain: handleStep,
+      };
+      
+      currentComponent = results ? <Results {...propsToPass} /> : <></>;
       break;
     default:
       currentComponent = <LandingPage onNextStep={handleStep} />;

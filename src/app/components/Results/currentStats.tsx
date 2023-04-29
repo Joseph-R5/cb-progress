@@ -1,4 +1,4 @@
-import { BarList, Card, Title, Bold, Flex, Text, RangeBar, CategoryBar, Subtitle, Divider, DeltaBar } from "@tremor/react";
+import { Card, Title, Flex, Text, RangeBar, Subtitle, Divider, CategoryBar } from "@tremor/react";
 import ProteinPie from "./proteinPie";
 
 const CurrentStats = ({ resultData, bodyComposition }: any) => {
@@ -7,10 +7,25 @@ const CurrentStats = ({ resultData, bodyComposition }: any) => {
     if (caloriesPerDay) {
         caloriesNum = parseInt(caloriesPerDay.replace(' kcal', ''));
     };
+    const bodyFatPercentage = parseFloat((resultData.metrics[0].metric).replace("%", ""));
+    const leanBodyMassValue = Math.round(100 - bodyComposition.bodyFatMass.value).toString();
+    let leanBodyMassColor, bodyFatMassColor = 'emerald';
+    if ( leanBodyMassValue < bodyComposition.leanBodyMass.min) {
+        leanBodyMassColor = 'orange'
+    } else if (leanBodyMassValue > bodyComposition.leanBodyMass.max) {
+        leanBodyMassColor = 'rose';
+    }
 
-    console.log('bodyComposition', bodyComposition);
+    console.log('bodyComposition.bodyFatMass.value ', bodyComposition.bodyFatMass.value );
+    console.log(' bodyComposition.bodyFatMass.min', bodyComposition.bodyFatMass.min);
+    console.log(' bodyComposition.bodyFatMass.max', bodyComposition.bodyFatMass.max);
 
-    // TODO seperate this into more components
+    if ( bodyComposition.bodyFatMass.value < bodyComposition.bodyFatMass.min) {
+        bodyFatMassColor = 'orange'
+    } else if (bodyComposition.bodyFatMass.value  > bodyComposition.bodyFatMass.max) {
+        bodyFatMassColor = 'rose';
+    }
+
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <Card className="max-w-lg">
@@ -29,44 +44,46 @@ const CurrentStats = ({ resultData, bodyComposition }: any) => {
                     maxPercentageValue={bodyComposition.bodyFatMass.max}
                     rangeTooltip={bodyComposition.bodyFatMass.range}
                     className="mt-3"
-                    color="emerald"
+                    color={bodyFatMassColor}
                 />
                 <Divider />
                 <Flex>
                     <Subtitle>Lean Body Mass</Subtitle>
                     <Flex alignItems="baseline" justifyContent="end" className="space-x-1">
-                        <Text>{Math.round(100 - bodyComposition.bodyFatMass.value).toString()}%</Text>
+                        <Text>{leanBodyMassValue}%</Text>
                     </Flex>
                 </Flex>
                 <RangeBar
                     percentageValue={100 - Math.round(bodyComposition.bodyFatMass.value)}
-                    markerTooltip={Math.round(100 - bodyComposition.bodyFatMass.value).toString()}
+                    markerTooltip={leanBodyMassValue}
                     minPercentageValue={bodyComposition.leanBodyMass.min}
                     maxPercentageValue={bodyComposition.leanBodyMass.max}
                     rangeTooltip={bodyComposition.leanBodyMass.range}
                     className="mt-3"
-                    color="emerald"
+                    color={leanBodyMassColor}
                 />
                 <Divider />
                 <Flex>
                     <Subtitle>Body Fat %</Subtitle>
+                    <Text>{bodyFatPercentage}%</Text>
                 </Flex>
                 <CategoryBar
                     categoryPercentageValues={[10, 10, 10, 70]}
                     showAnimation={true}
                     colors={["orange", "emerald", "yellow", "rose"]}
-                    percentageValue={resultData.BODY_FAT}
+                    percentageValue={bodyFatPercentage}
                 />
                 <Divider />
                 <Flex>
                     <Subtitle>BMI</Subtitle>
+                    <Text>{Math.round(bodyComposition.bmi)}</Text>
                 </Flex>
-                <DeltaBar
-                    percentageValue={45}
-                    isIncreasePositive={false}
-                    className="mt-3"
+                <CategoryBar
+                    categoryPercentageValues={[18, 7, 5, 4, 66]}
+                    showAnimation={true}
+                    colors={["orange", "emerald", "yellow", "rose", "red"]}
+                    percentageValue={bodyComposition.bmi}
                 />
-                <Divider />
             </Card>
             {caloriesNum && <ProteinPie caloriesPerDay={caloriesNum} />}
         </div>

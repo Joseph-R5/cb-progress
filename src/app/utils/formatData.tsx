@@ -51,7 +51,7 @@ const generateMetrics = (data: any, setting: any) => {
     const { goal } = getMetrics(bodyFatPercentage, data.gender, setting);
     const { kcalPerDay, weightLostPerWeek } = getTargets(data, setting, bodyFatPercentage > 20);
     const weightDates = getWeightDates(bodyFatPercentage, data.weight, 75, setting);
-    const lastDate = weightDates.slice(-1)[0].date;
+    const lastDate = weightDates?.slice(-1)[0]?.date;
 
     return [{
         title: 'Body Fat Percentage',

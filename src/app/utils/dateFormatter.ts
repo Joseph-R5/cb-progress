@@ -9,11 +9,11 @@ export const getDaySuffix =(day: number) => {
 }
 
 export const convertLastDate = (lastDate: any) => {
-    const date = new Date(lastDate);
-    const month = date.toLocaleString('default', { month: 'short' });
-    const year = lastDate.slice(2, 4);
-    const day = parseInt(lastDate.slice(8, 10));
-    const suffix = getDaySuffix(day);
-    
-    return `${day}${suffix} ${month}`;
+  const date = new Date(lastDate);
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+  const day = parseInt(lastDate.slice(8, 10));
+  const suffix = getDaySuffix(day);
+  
+  return `${day}${suffix} ${month} ${year}`;
 }
