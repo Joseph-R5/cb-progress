@@ -35,7 +35,6 @@ export default function Home() {
     case 3:
       const propsToPass = {
         results,
-        userDetails: data,
         startAgain: handleStep,
       };
 
@@ -45,7 +44,6 @@ export default function Home() {
       currentComponent = <LandingPage onNextStep={handleStep} />;
   }
 
-  console.log('Current component: ', currentComponent)
   return (
     <main id="mainContainer" className={styles.main}>
       <div className={styles.waves}>

@@ -1,7 +1,13 @@
-import { Card, Title, Flex, Text, RangeBar, Subtitle, Divider, CategoryBar } from "@tremor/react";
+import { Card, Title, Flex, Text, RangeBar, Subtitle, Divider, CategoryBar, Grid, Icon } from "@tremor/react";
 import ProteinPie from "./proteinPie";
+import { IBodyComposition, ITargetSettingData } from "@/app/types/resultsTypes";
 
-const CurrentStats = ({ resultData, bodyComposition }: any) => {
+interface CurrentStatsProps {
+    resultData: ITargetSettingData;
+    bodyComposition: IBodyComposition;
+}
+
+const CurrentStats = ({ resultData, bodyComposition }: CurrentStatsProps) => {
     const caloriesPerDay = resultData?.metrics[1].metric;
     let caloriesNum = 0;
     if (caloriesPerDay) {
@@ -10,9 +16,10 @@ const CurrentStats = ({ resultData, bodyComposition }: any) => {
     const bodyFatPercentage = parseFloat((resultData.metrics[0].metric).replace("%", ""));
     const leanBodyMassValue = Math.round(100 - bodyComposition.bodyFatMass.value).toString();
     let leanBodyMassColor, bodyFatMassColor = 'emerald';
-    if ( leanBodyMassValue < bodyComposition.leanBodyMass.min) {
+
+    if (Number(leanBodyMassValue) < bodyComposition.leanBodyMass.min) {
         leanBodyMassColor = 'orange'
-    } else if (leanBodyMassValue > bodyComposition.leanBodyMass.max) {
+    } else if (Number(leanBodyMassValue) > bodyComposition.leanBodyMass.max) {
         leanBodyMassColor = 'rose';
     }
 
@@ -23,7 +30,7 @@ const CurrentStats = ({ resultData, bodyComposition }: any) => {
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <Grid numColsSm={1} numColsLg={2} >
             <Card className="max-w-lg">
                 <Title style={{ textAlign: "center" }}>{bodyComposition?.category} Body Composition</Title>
                 <Divider />
@@ -72,17 +79,17 @@ const CurrentStats = ({ resultData, bodyComposition }: any) => {
                 <Divider />
                 <Flex>
                     <Subtitle>BMI</Subtitle>
-                    <Text>{Math.round(bodyComposition.bmi)}</Text>
+                    <Text>{Math.round(Number(bodyComposition.bmi))}</Text>
                 </Flex>
                 <CategoryBar
                     categoryPercentageValues={[18, 7, 5, 4, 66]}
                     showAnimation={true}
                     colors={["orange", "emerald", "yellow", "rose", "red"]}
-                    percentageValue={bodyComposition.bmi}
+                    percentageValue={Number(bodyComposition.bmi)}
                 />
             </Card>
             {caloriesNum && <ProteinPie caloriesPerDay={caloriesNum} />}
-        </div>
+        </Grid>
     );
 };
 

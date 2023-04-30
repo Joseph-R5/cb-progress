@@ -1,7 +1,12 @@
+import { IResults } from "@/app/types/resultsTypes";
 import { getAreaGraphData } from "@/app/utils/generateAreaGraphData";
 import { Card, Title, AreaChart } from "@tremor/react";
 
-const WeightGraph = ({ results }: { results: any }) => {
+interface WeightGraphProps {
+  results: IResults
+}
+
+const WeightGraph = ({ results }: WeightGraphProps) => {
   const data = getAreaGraphData(results);
 
   const minValue = data[0]?.Mild - 2;

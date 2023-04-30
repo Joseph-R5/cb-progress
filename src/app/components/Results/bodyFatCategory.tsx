@@ -1,6 +1,13 @@
-import { Grid, Flex, Metric, Card, CategoryBar, Text, Toggle, ToggleItem } from "@tremor/react";
+import { SettingType } from "@/app/types/resultTypes";
+import { IResults } from "@/app/types/resultsTypes";
+import { Grid, Flex, Metric, Card, Toggle, ToggleItem } from "@tremor/react";
 
-const BodyFatCategory = ({ results, setSetting }: { results: any, setSetting: any }) => {
+interface BodyFatCateogryProps {
+    results: IResults;
+    setSetting: (value: SettingType) => void;
+};
+
+const BodyFatCategory = ({ results, setSetting }: BodyFatCateogryProps) => {
     return (
         <Grid className="gap-6 mx-auto">
             <Card className="max-w-sm mx-auto">

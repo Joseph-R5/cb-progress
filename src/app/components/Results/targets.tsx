@@ -1,16 +1,19 @@
 import { Grid, Card, Flex, Text, Metric, Icon, Col } from "@tremor/react";
 import { CalendarIcon, ChartBarIcon, SunIcon } from "@heroicons/react/solid";
+import { IMetricData, ITargetSettingData } from "@/app/types/resultsTypes";
 
-const Targets = ({ resultData }: { resultData: any }) => {
-    console.log('resultDataMetrics', resultData?.metrics)
+interface TargetsProps {
+    resultData: ITargetSettingData
+}
 
+const Targets = ({ resultData }: TargetsProps) => {
     return (
         <Grid numColsSm={2} numColsLg={3}>
-            {resultData?.metrics.map((item: any) => {
+            {resultData?.metrics.map((item: IMetricData) => {
                 return (
                     <Card key={item.title} style={{ marginBottom: "1.25rem", marginRight: "0.5rem" }}>
                         <Flex alignItems="center">
-                            <Text style={{textAlign: 'center'}}>{item.title}</Text>
+                            <Text style={{ textAlign: 'center' }}>{item.title}</Text>
                         </Flex>
                         <Flex
                             className="space-x-3 truncate"
