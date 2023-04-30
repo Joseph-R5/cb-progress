@@ -1,39 +1,34 @@
-import { Card, Title, AreaChart, Text } from "@tremor/react";
+import { IResults } from "@/app/types/resultsTypes";
+import { getAreaGraphData } from "@/app/utils/generateAreaGraphData";
+import { Card, Title, AreaChart } from "@tremor/react";
 
-const data = [
-    {
-      Month: 'Jan 21',
-      Sales: 2890,
-      Profit: 2400
-    },
-    {
-      Month: 'Feb 21',
-      Sales: 1890,
-      Profit: 1398
-    },
-    {
-      Month: 'Jan 22',
-      Sales: 3890,
-      Profit: 2980
-    }
-  ];
+interface WeightGraphProps {
+  results: IResults
+}
 
-const valueFormatter = (number: number) =>
-  `$ ${Intl.NumberFormat('us').format(number).toString()}`;
+const WeightGraph = ({ results }: WeightGraphProps) => {
+  const data = getAreaGraphData(results);
 
-const WeightGraph = () => (
-    <Card className="mt-8">
-      <Title>Expected Weight goes here</Title>
-      <Text>Comparison between Sales and Profit</Text>
+  const minValue = data[0]?.Mild - 2;
+  const maxValue = data[4]?.Extreme + 2;
+
+  return (
+    <Card className="mt-8" style={{ marginTop: "1.25rem"}}>
+      <Title style={{textAlign: 'center'}}>Weight Over Time</Title>
       <AreaChart
         className="mt-4 h-80"
         data={data}
-        categories={['Sales', 'Profit']}
-        index="Month"
-        colors={['indigo', 'fuchsia']}
-        valueFormatter={valueFormatter}
+        index="date"
+        categories={['Mild', 'Recommended', 'Extreme']}
+        colors={["fuchsia", "indigo",  "cyan"]}
+        showAnimation={true}
+        showGradient={false}
+        showGridLines={false}
+        minValue={minValue}
+        maxValue={maxValue}
       />
     </Card>
-);
+  );
+};
 
 export default WeightGraph;
