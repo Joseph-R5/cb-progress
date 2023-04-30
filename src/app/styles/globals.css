@@ -93,10 +93,6 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  background: linear-gradient(to right, #14b8a6, #06b6d4);
-}
-
 a {
   color: inherit;
   text-decoration: none;
