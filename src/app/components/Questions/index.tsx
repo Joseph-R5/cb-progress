@@ -10,7 +10,7 @@ import ActivityLevel from './ActivityLevel';
 import { Button, Grid, ProgressBar } from '@tremor/react';
 
 const Questions: React.FC<PageProps> = ({ onNextStep }) => {
-    const [currentProgress, setCurrentProgress] = useState<number>(1);
+    const [currentProgress, setCurrentProgress] = useState<number>(0);
     const [userDetails, setUserDetails] = useState<UpdatedUserDetails>({
         gender: 'male', age: 0, height: 0, waist: 0, neck: 0, weight: 0, activityLevel: 'light', hip: 0
     });
@@ -45,22 +45,22 @@ const Questions: React.FC<PageProps> = ({ onNextStep }) => {
 
     let currentComponent = null;
     switch (currentProgress) {
-        case 1:
+        case 0:
             currentComponent = <Gender handleProgressChange={handleProgressChange} />;
             break;
-        case 2:
+        case 1:
             currentComponent = <Age handleProgressChange={handleProgressChange} />;
             break;
-        case 3:
+        case 2:
             currentComponent = <Weight handleProgressChange={handleProgressChange} />;
             break;
-        case 4:
+        case 3:
             currentComponent = <Height handleProgressChange={handleProgressChange} />;
             break;
-        case 5:
+        case 4:
             currentComponent = <Measurements handleProgressChange={handleProgressChange} gender={userDetails.gender} />;
             break;
-        case 6:
+        case 5:
             currentComponent = <ActivityLevel handleProgressChange={handleProgressChange} />;
             break;
         default:
