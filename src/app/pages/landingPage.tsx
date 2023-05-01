@@ -20,8 +20,8 @@ const LandingPage: React.FC<PageProps> = ({ onNextStep }) => {
 
   return (
     <Grid numCols={2} style={{ width: '80%' }}>
-      <Card style={{ border: 'none'}}>
-        <Title style={{ fontSize: '65px', margin: 'auto', paddingBottom: '2rem' }}>Cut 🔪 or Bulk 💪</Title>
+      <Card style={{ border: 'none', borderColor: 'transparent', boxShadow: 'none'}}>
+        <Title style={{ fontSize: '65px', margin: 'auto', paddingBottom: '2rem', letterSpacing: '3px' }}>🔪 Cut or Bulk 💪</Title>
         <Subtitle style={{ fontSize: '30px', margin: 'auto', paddingBottom: '2.5rem' }}>Find out based on your body fat percentage</Subtitle>
         <Button size="xl" style={{ background: 'rgb(255,190,35)', border: '0.5px solid black', color: 'black', padding: '0.8rem' }} onClick={() => handleButtonClick(2)}>
           Get Started

@@ -1,24 +1,41 @@
-.genderContainer {
+.genderGrid {
     width: 50%;
-    display: flex;
-    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3rem;
     justify-content: center;
+  }
+
+.genderCard {
+    text-align: center;
     align-items: center;
+    box-shadow: none;
+    border: 'none';
+    border-color: 'transparent';
 }
 
-.genderOption {
-    margin-left: 25px;
-    margin-right: 25px;
-    padding: 8px;
+.genderCard:hover {
+    background-color: lightblue;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.genderOption h2{
+.genderTitle {
+    font-size: 28px;
 }
 
-.genderOption:hover {
-    background-color: lightgray;
+.backButton {
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgb(255,190,35);
+    background-color: rgb(255,190,35);
+    color: black;
+    border: none;
+}
+
+.backButton:hover {
+    background: rgb(255,190,35);
+    background-color:rgb(255,190,35);
+    color: black;
+    border: 1px solid black;
 }

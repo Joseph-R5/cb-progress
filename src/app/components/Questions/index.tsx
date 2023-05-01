@@ -1,5 +1,4 @@
 'use client';
-import ProgressBar from '../ProgressBar';
 import { PageProps, UpdatedUserDetails } from '../../types/pageProps';
 import { useState, useEffect } from 'react';
 import Age from './Age';
@@ -8,6 +7,7 @@ import Gender from './Gender';
 import Weight from './Weight';
 import Height from './Height';
 import ActivityLevel from './ActivityLevel';
+import { Button, Grid, ProgressBar } from '@tremor/react';
 
 const Questions: React.FC<PageProps> = ({ onNextStep }) => {
     const [currentProgress, setCurrentProgress] = useState<number>(1);
@@ -46,19 +46,19 @@ const Questions: React.FC<PageProps> = ({ onNextStep }) => {
     let currentComponent = null;
     switch (currentProgress) {
         case 1:
-            currentComponent = <Gender handleProgressChange={handleProgressChange}/>;
+            currentComponent = <Gender handleProgressChange={handleProgressChange} />;
             break;
         case 2:
-            currentComponent = <Age handleProgressChange={handleProgressChange}/>;
+            currentComponent = <Age handleProgressChange={handleProgressChange} />;
             break;
         case 3:
-            currentComponent = <Weight handleProgressChange={handleProgressChange}/>;
+            currentComponent = <Weight handleProgressChange={handleProgressChange} />;
             break;
         case 4:
             currentComponent = <Height handleProgressChange={handleProgressChange} />;
             break;
         case 5:
-            currentComponent = <Measurements handleProgressChange={handleProgressChange} gender={userDetails.gender}/>;
+            currentComponent = <Measurements handleProgressChange={handleProgressChange} gender={userDetails.gender} />;
             break;
         case 6:
             currentComponent = <ActivityLevel handleProgressChange={handleProgressChange} />;
@@ -68,10 +68,10 @@ const Questions: React.FC<PageProps> = ({ onNextStep }) => {
     }
 
     return (
-        <>
-            <ProgressBar progress={currentProgress} onProgressChange={handleProgressChange} />
+        <Grid numCols={1} style={{ width: '75%' }}>
+            <ProgressBar percentageValue={currentProgress * (100 / 6)} color="teal" className="mt-3" />
             {currentComponent}
-        </>
+        </Grid>
     )
 };
 
