@@ -1,7 +1,8 @@
-import styles from '../../../styles/questions.module.css';
+import { Button, Callout, Card, Flex, Grid, Subtitle, TextInput } from '@tremor/react';
 import { ProgressProps, UpdatedUserDetails, HeightUnits } from '../../../types/pageProps';
 import Image from 'next/image';
 import { useState } from 'react';
+import { ChartBarIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 
 const Height: React.FC<ProgressProps> = ({ handleProgressChange }) => {
     const [height, setHeight] = useState<number>(0);
@@ -24,25 +25,49 @@ const Height: React.FC<ProgressProps> = ({ handleProgressChange }) => {
     };
 
     return (
-        <div className={styles.container}>
-            <Image
-                src="/male-height.svg"
-                alt="Male"
-                width={100}
-                height={150}
-            />
-            <div className={styles.description}>HEIGHT</div>
-            <div className={styles.inputContainer}>
-                <input type="number" className={styles.heightTextBox} placeholder=" " onChange={e => handleHeightChange(e, 'cm')} />
-                <span className={styles.inputText}>cm</span>
-            </div>
-            <div className={styles.description}>We asked for your weight & height to calculate a sutiable goal weight range for you</div>
-            <div className={styles.buttonsContainer}>
-                <button className={styles.button} onClick={() => handleNext(-1, {})}>Back</button>
-                <button className={styles.button} onClick={() => handleNext(1, { height })}>Next</button>
-            </div>
-            {error && <div className={styles.error}>Please enter a valid height</div>}
-        </div>
+        <Grid numCols={1} style={{ justifyContent: 'center', alignItems: 'center', paddingTop: '2rem' }}>
+            <Card style={{ boxShadow: 'none', width: '50%', marginLeft: 'auto', marginRight: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <Image
+                    src="/male-height.svg"
+                    alt="Height"
+                    width={100}
+                    height={120}
+                />
+                <Card style={{ boxShadow: 'none', marginLeft: 'auto', marginRight: 'auto', alignItems: 'center', width: '50%' }}>
+                    <TextInput
+                        style={{ width: '50%', fontSize: '1.5rem' }}
+                        icon={ChartBarIcon}
+                        onChange={e => handleHeightChange(e, 'cm')}
+                        placeholder="cm"
+                    />
+                    {error && <Callout
+                        title="Please enter a valid height"
+                        icon={ExclamationCircleIcon}
+                        color="rose"
+                    />}
+                </Card>
+                <Subtitle style={{ fontSize: '22px', wordWrap: 'break-word', whiteSpace: 'pre-wrap', textAlign: 'center' }}>
+                    We asked for your weight & height to calculate a sutiable goal weight range for you
+                </Subtitle>
+                <br />
+                <Flex style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                    <Button
+                        size="xl"
+                        style={{ fontSize: '22px', background: 'rgb(255,190,35)', color: 'black', border: 'none' }}
+                        onClick={() => handleNext(-1, {})}
+                    >
+                        Back
+                    </Button>
+                    <Button
+                        size="xl"
+                        style={{ background: 'rgb(255,190,35)', color: 'black', border: 'none' }}
+                        onClick={() => handleNext(1, { height })}
+                    >
+                        Next
+                    </Button>
+                </Flex>
+            </Card>
+        </Grid>
     )
 };
 

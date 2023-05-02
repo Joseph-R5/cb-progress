@@ -22,11 +22,16 @@ const Results = ({ results, startAgain }: ResultsProps) => {
         <div>
             <BodyFatCategory results={results} setSetting={setSetting} />
             <Targets resultData={resultData} />
-            {!resultData && <CustomLoader/>}
+            {!resultData && <CustomLoader />}
             {resultData && <CurrentStats resultData={resultData} bodyComposition={bodyComposition} />}
             <WeightGraph results={results} />
             <Flex style={{ justifyContent: 'right' }}>
-                <Button onClick={() => startAgain(1)} style={{ marginTop: '1rem' }}>Start Again</Button>
+                <Button
+                    onClick={() => startAgain(1)}
+                    style={{ marginTop: '1rem', background: 'rgb(255,190,35)', backgroundColor: 'rgb(255,190,35)', border: 'none', color: 'black' }}
+                >
+                    Start Again
+                </Button>
             </Flex>
         </div>
     );
