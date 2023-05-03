@@ -1,14 +1,15 @@
 import { Button, Callout, Card, Flex, Grid, Subtitle, TextInput } from '@tremor/react';
-import { ProgressProps, UpdatedUserDetails, HeightUnits } from '../../../types/pageProps';
+import { ProgressProps } from '../../../types/pageProps';
 import Image from 'next/image';
 import { useState } from 'react';
 import { ChartBarIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
+import { IUserDetails } from '@/app/types/dataTypes';
 
 const Height: React.FC<ProgressProps> = ({ handleProgressChange }) => {
     const [height, setHeight] = useState<number>(0);
     const [error, setError] = useState<boolean>(false);
 
-    const handleNext = (progress: number, userDetails: Partial<UpdatedUserDetails>) => {
+    const handleNext = (progress: number, userDetails: Partial<IUserDetails>) => {
         if (height === 0 && progress !== -1) {
             setError(true);
         } else {

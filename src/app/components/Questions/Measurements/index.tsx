@@ -1,9 +1,9 @@
 import { Button, Callout, Card, Flex, Grid, TextInput } from '@tremor/react';
-import styles from '../../../styles/questions.module.css';
-import { ProgressProps, UpdatedUserDetails, HeightUnits, Gender } from '../../../types/pageProps';
+import { ProgressProps } from '../../../types/pageProps';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ChevronRightIcon, ExclamationCircleIcon, PaperAirplaneIcon } from '@heroicons/react/solid';
+import { ChevronRightIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
+import { IUserDetails } from '@/app/types/dataTypes';
 
 const WAIST = 'waist';
 const NECK = 'neck';
@@ -36,7 +36,7 @@ const Measurements: React.FC<ProgressProps> = ({ handleProgressChange, gender })
         }
     };
 
-    const handleNext = (progress: number, userDetails: Partial<UpdatedUserDetails>) => {
+    const handleNext = (progress: number, userDetails: Partial<IUserDetails>) => {
         if ((waist === undefined || neck === undefined || (gender === 'female' && hip === undefined)) && progress !== -1) {
             setError(true);
         } else {

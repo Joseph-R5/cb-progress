@@ -8,8 +8,7 @@ export const getDaySuffix =(day: number) => {
     }
 }
 
-export const convertLastDate = (lastDate: any) => {
-  console.log('lastDate', lastDate);
+export const convertLastDate = (lastDate: string) => {
 
   const date = new Date(lastDate);
   const month = date.toLocaleString('default', { month: 'short' });

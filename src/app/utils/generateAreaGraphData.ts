@@ -1,3 +1,7 @@
+import { IResults } from "../types/resultsTypes";
+import { IWeightDate } from "../types/weightDateTypes";
+
+// TODO
 function convertArray(arr: any[]): any[] {
     const result: { [key: string]: any } = {};
 
@@ -16,12 +20,12 @@ function convertArray(arr: any[]): any[] {
     return Object.values(result);
 }
 
-export const getAreaGraphData = (results: any) => {
+export const getAreaGraphData = (results: IResults) => {
     const summarizedData = [];
 
     if (results && results.MILD && results.MILD.weightDates) {
         summarizedData.push(
-            ...results.MILD.weightDates.map((entry: any) => ({
+            ...results.MILD.weightDates.map((entry: IWeightDate) => ({
                 date: entry.date.slice(8, 10) + '/' + entry.date.slice(5, 7),
                 Mild: Number(entry.weight),
             }))
@@ -30,7 +34,7 @@ export const getAreaGraphData = (results: any) => {
 
     if (results && results.RECOMMENDED && results.RECOMMENDED.weightDates) {
         summarizedData.push(
-            ...results.RECOMMENDED.weightDates.map((entry: any) => ({
+            ...results.RECOMMENDED.weightDates.map((entry: IWeightDate) => ({
                 date: entry.date.slice(8, 10) + '/' + entry.date.slice(5, 7),
                 Recommended: Number(entry.weight),
             }))
@@ -39,7 +43,7 @@ export const getAreaGraphData = (results: any) => {
 
     if (results && results.EXTREME && results.EXTREME.weightDates) {
         summarizedData.push(
-            ...results.EXTREME.weightDates.map((entry: any) => ({
+            ...results.EXTREME.weightDates.map((entry: IWeightDate) => ({
                 date: entry.date.slice(8, 10) + '/' + entry.date.slice(5, 7),
                 Extreme: Number(entry.weight),
             }))

@@ -1,8 +1,8 @@
 import { BodyFatResults, IBodyFatMass } from "../types/bodyFatTypes";
-import { UpdatedUserDetails } from "../types/pageProps";
+import { IUserDetails } from "../types/dataTypes";
 import { getBodyFat } from "./getBodyFatPercentage";
 
-const generateBodyFatResults = (results: UpdatedUserDetails): BodyFatResults => {
+const generateBodyFatResults = (results: IUserDetails): BodyFatResults => {
     const bodyFatPercentage = getBodyFat(results);
     const { weight, height, gender, neck, waist } = results;
     

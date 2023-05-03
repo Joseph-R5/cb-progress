@@ -1,4 +1,5 @@
-import { SettingType } from "../types/resultTypes";
+import { SettingType } from "../types/settingTypes";
+import { IWeightDate } from "../types/weightDateTypes";
 
 export const getWeightDates = (
   currentBodyFatPercentage: number,
@@ -6,7 +7,7 @@ export const getWeightDates = (
   targetWeight: number,
   setting: SettingType,
   gender: 'male' | 'female'
-) => {
+): IWeightDate[] => {
   const isOnCut = currentBodyFatPercentage >= (gender === 'male' ? 15 : 20);
   const multiplier = isOnCut ? -1 : 1;
   let expectedWeight = currentWeight;

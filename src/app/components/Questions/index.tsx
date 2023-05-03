@@ -1,5 +1,6 @@
 'use client';
-import { PageProps, UpdatedUserDetails } from '../../types/pageProps';
+import { PageProps } from '../../types/pageProps';
+import { IUserDetails } from '../../types/dataTypes';
 import { useState, useEffect } from 'react';
 import Age from './Age';
 import Measurements from './Measurements';
@@ -11,7 +12,7 @@ import { Grid, ProgressBar } from '@tremor/react';
 
 const Questions: React.FC<PageProps> = ({ onNextStep }) => {
     const [currentProgress, setCurrentProgress] = useState<number>(0);
-    const [userDetails, setUserDetails] = useState<UpdatedUserDetails>({
+    const [userDetails, setUserDetails] = useState<IUserDetails>({
         gender: 'male', age: 0, height: 0, waist: 0, neck: 0, weight: 0, activityLevel: 'light', hip: 0
     });
 
@@ -28,7 +29,7 @@ const Questions: React.FC<PageProps> = ({ onNextStep }) => {
         }
     }
 
-    const handleProgressChange = (nextProgress: number, updatedUserDetails: Partial<UpdatedUserDetails>) => {
+    const handleProgressChange = (nextProgress: number, updatedUserDetails: Partial<IUserDetails>) => {
         if (nextProgress === 0) {
             handleNextStep(0);
         } else if (nextProgress === 2) {

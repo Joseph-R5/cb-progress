@@ -1,24 +1,13 @@
+import { Gender, IUserDetails } from "./dataTypes";
+
 export interface PageProps {
-    onNextStep: (next: number, userDetails: UpdatedUserDetails) => void;
+    onNextStep: (next: number, userDetails: IUserDetails) => void;
 }
 
 export interface ProgressProps {
-    handleProgressChange: (next: number, updatedUserDetails: Partial<UpdatedUserDetails>) => void;
+    handleProgressChange: (next: number, userDetails: Partial<IUserDetails>) => void;
     gender?: Gender;
 }
-
-export type Gender = 'male' | 'female';
-
-export type UpdatedUserDetails = {
-    gender: Gender
-    age: number;
-    height: number;
-    waist: number;
-    neck: number;
-    hip: number;
-    weight: number;
-    activityLevel: ActivityLevel
-};
 
 export type WeightUnits = 'kg' | 'lbs' | 'st';
 export type HeightUnits = 'cm' | 'ft & ins';

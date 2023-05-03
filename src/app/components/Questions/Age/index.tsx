@@ -1,4 +1,5 @@
-import { ProgressProps, UpdatedUserDetails } from '../../../types/pageProps';
+import { ProgressProps } from '../../../types/pageProps';
+import { IUserDetails } from '@/app/types/dataTypes';
 import { useState } from 'react';
 import Image from 'next/image';
 import { Button, Callout, Card, Flex, Grid, Subtitle, TextInput } from '@tremor/react';
@@ -8,7 +9,7 @@ const Age: React.FC<ProgressProps> = ({ handleProgressChange }) => {
     const [age, setAge] = useState<number>();
     const [error, setError] = useState<boolean>(false);
 
-    const handleNext = (progress: number, userDetails: Partial<UpdatedUserDetails>) => {
+    const handleNext = (progress: number, userDetails: Partial<IUserDetails>) => {
         if (age === undefined && progress !== -1) {
             setError(true);
         } else {

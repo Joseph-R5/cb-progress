@@ -1,4 +1,4 @@
-import { SettingType } from '@/app/types/resultTypes';
+import { SettingType } from '@/app/types/settingTypes';
 import { useState } from 'react';
 import WeightGraph from './weightGraph';
 import CurrentStats from './currentStats';
@@ -6,14 +6,14 @@ import BodyFatCategory from './bodyFatCategory';
 import Targets from './targets';
 import { Button, Flex } from '@tremor/react';
 import { IResults, ITargetSettingData } from '../../types/resultsTypes';
-import { UpdatedUserDetails } from '@/app/types/pageProps';
 import CustomLoader from '../Loader';
-interface ResultsProps {
+import { IUserDetails } from '@/app/types/dataTypes';
+interface IResultsProps {
     results: IResults;
-    startAgain: (nextStep: number, userDetails?: UpdatedUserDetails) => void;
+    startAgain: (nextStep: number, userDetails?: IUserDetails) => void;
 }
 
-const Results = ({ results, startAgain }: ResultsProps) => {
+const Results = ({ results, startAgain }: IResultsProps) => {
     const [setting, setSetting] = useState<SettingType>('recommended');
     const resultData = results[setting.toUpperCase()] as ITargetSettingData;
     const bodyComposition = results.BODY_COMPOSITION;

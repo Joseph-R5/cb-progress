@@ -1,15 +1,16 @@
-import { Button, Callout, Card, Flex, Grid, Subtitle, TextInput, Toggle, ToggleItem } from '@tremor/react';
-import { ProgressProps, UpdatedUserDetails, WeightUnits } from '../../../types/pageProps';
+import { Button, Callout, Card, Flex, Grid, TextInput, Toggle, ToggleItem } from '@tremor/react';
+import { ProgressProps, WeightUnits } from '../../../types/pageProps';
 import Image from 'next/image';
 import { useState } from 'react';
 import { ExclamationCircleIcon, ScaleIcon } from '@heroicons/react/solid';
+import { IUserDetails } from '@/app/types/dataTypes';
 
 const Weight: React.FC<ProgressProps> = ({ handleProgressChange }) => {
     const [weight, setWeight] = useState<number>();
     const [units, setUnits] = useState<WeightUnits>('kg');
     const [error, setError] = useState<boolean>(false);
 
-    const handleNext = (progress: number, userDetails: Partial<UpdatedUserDetails>) => {
+    const handleNext = (progress: number, userDetails: Partial<IUserDetails>) => {
         if (weight === undefined && progress !== -1) {
             setError(true);
         } else {

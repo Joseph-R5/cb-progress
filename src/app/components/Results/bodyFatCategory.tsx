@@ -1,4 +1,4 @@
-import { SettingType } from "@/app/types/resultTypes";
+import { SettingType } from "@/app/types/settingTypes";
 import { IResults } from "@/app/types/resultsTypes";
 import { Grid, Flex, Metric, Card, Toggle, ToggleItem } from "@tremor/react";
 

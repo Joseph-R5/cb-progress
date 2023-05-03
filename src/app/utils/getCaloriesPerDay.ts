@@ -1,6 +1,6 @@
 
-import { Gender, UpdatedUserDetails } from "../types/pageProps";
-import { SettingType } from "../types/resultTypes";
+import { Gender, IUserDetails } from "../types/dataTypes";
+import { SettingType } from "../types/settingTypes";
 
 export const calculateBasalMetabolicRate = (gender: Gender, age: number, height: number, weight: number): number => {
     let bmr = 0;
@@ -14,7 +14,7 @@ export const calculateBasalMetabolicRate = (gender: Gender, age: number, height:
     return bmr;
 }
 
-export const calculateCaloriesToLoseWeight = ({ gender, age, height, weight, activityLevel }: UpdatedUserDetails, setting: SettingType, isOnCut: boolean): number => {
+export const calculateCaloriesToLoseWeight = ({ gender, age, height, weight, activityLevel }: IUserDetails, setting: SettingType, isOnCut: boolean): number => {
     const bmr: number = calculateBasalMetabolicRate(gender, age, height, weight);
 
     // Multiply BMR by activity factor to estimate TDEE

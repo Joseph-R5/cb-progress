@@ -10,6 +10,8 @@ import { getResultsFormattedData } from './utils/formatData';
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [data, setData] = useState<IUserDetails>();
+
+  // TODO to be changed to IResults
   const [results, setResults] = useState<any>({});
 
   useEffect(() => {

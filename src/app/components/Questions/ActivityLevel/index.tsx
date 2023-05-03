@@ -1,6 +1,6 @@
 import { Card, Grid, Subtitle, Title } from '@tremor/react';
 import styles from '../../../styles/activity.module.css';
-import { ProgressProps, UpdatedUserDetails, HeightUnits } from '../../../types/pageProps';
+import { ProgressProps } from '../../../types/pageProps';
 import Image from 'next/image';
 
 const ActivityLevel: React.FC<ProgressProps> = ({ handleProgressChange }) => {

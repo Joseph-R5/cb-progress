@@ -1,6 +1,6 @@
-import { UpdatedUserDetails } from "../types/pageProps";
+import { IUserDetails } from "../types/dataTypes";
 
-export const getBodyFat = (results: UpdatedUserDetails) => {
+export const getBodyFat = (results: IUserDetails): number => {
     const { waist, neck, gender, height, hip } = results;
 
     if (gender === 'male') {

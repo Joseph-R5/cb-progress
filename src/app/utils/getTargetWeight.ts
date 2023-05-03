@@ -1,6 +1,6 @@
-import { UpdatedUserDetails } from "../types/pageProps";
+import { IUserDetails } from "../types/dataTypes";
 
-export const getTargetWeight = (data: UpdatedUserDetails) => {
+export const getTargetWeight = (data: IUserDetails) => {
     const { gender, height, waist, neck, weight } = data;
     let lbm: number;
 
