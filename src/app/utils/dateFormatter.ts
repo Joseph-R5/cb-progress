@@ -9,6 +9,8 @@ export const getDaySuffix =(day: number) => {
 }
 
 export const convertLastDate = (lastDate: any) => {
+  console.log('lastDate', lastDate);
+
   const date = new Date(lastDate);
   const month = date.toLocaleString('default', { month: 'short' });
   const year = date.getFullYear();

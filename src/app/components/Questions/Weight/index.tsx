@@ -19,7 +19,12 @@ const Weight: React.FC<ProgressProps> = ({ handleProgressChange }) => {
     };
 
     const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setWeight(parseInt(event.target.value));
+        const value = event.target.value;
+        const weight = parseInt(value);
+
+        if (!isNaN(weight) ) {
+            setWeight(weight);
+        }
     };
 
     return (

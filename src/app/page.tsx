@@ -4,12 +4,12 @@ import styles from './styles/page.module.css'
 import LandingPage from './pages/landingPage';
 import Questions from './components/Questions';
 import Results from './components/Results';
-import { UpdatedUserDetails } from './types/pageProps';
+import { IUserDetails } from './types/dataTypes';
 import { getResultsFormattedData } from './utils/formatData';
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<number>(1);
-  const [data, setData] = useState<UpdatedUserDetails>();
+  const [data, setData] = useState<IUserDetails>();
   const [results, setResults] = useState<any>({});
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Home() {
     }
   }, [currentStep, data]);
 
-  const handleStep = async (nextStep: number, userDetails?: UpdatedUserDetails) => {
+  const handleStep = async (nextStep: number, userDetails?: IUserDetails) => {
     setCurrentStep(nextStep);
     setData(userDetails);
   };

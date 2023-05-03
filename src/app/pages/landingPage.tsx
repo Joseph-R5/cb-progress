@@ -1,6 +1,5 @@
 'use client'
 import { Button, Card, Flex, Grid, Icon, Subtitle, Text, Title } from '@tremor/react';
-import styles from '../styles/landingPage.module.css';
 import { PageProps } from '../types/pageProps';
 import { CalculatorIcon, CalendarIcon, ScaleIcon } from '@heroicons/react/solid';
 import Image from 'next/image';

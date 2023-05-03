@@ -4,9 +4,10 @@ export const getWeightDates = (
   currentBodyFatPercentage: number,
   currentWeight: number,
   targetWeight: number,
-  setting: SettingType
+  setting: SettingType,
+  gender: 'male' | 'female'
 ) => {
-  const isOnCut = currentBodyFatPercentage >= 20;
+  const isOnCut = currentBodyFatPercentage >= (gender === 'male' ? 15 : 20);
   const multiplier = isOnCut ? -1 : 1;
   let expectedWeight = currentWeight;
   const dates = [];

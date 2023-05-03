@@ -7,7 +7,7 @@ import Gender from './Gender';
 import Weight from './Weight';
 import Height from './Height';
 import ActivityLevel from './ActivityLevel';
-import { Button, Grid, ProgressBar } from '@tremor/react';
+import { Grid, ProgressBar } from '@tremor/react';
 
 const Questions: React.FC<PageProps> = ({ onNextStep }) => {
     const [currentProgress, setCurrentProgress] = useState<number>(0);

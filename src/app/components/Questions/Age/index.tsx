@@ -18,7 +18,12 @@ const Age: React.FC<ProgressProps> = ({ handleProgressChange }) => {
     }
 
     const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAge(parseInt(event.target.value));
+        const value = event.target.value;
+        const age = parseInt(value);
+    
+        if (!isNaN(age) && age > 0 && age < 100) {
+            setAge(age);
+        }
     };
 
     return (

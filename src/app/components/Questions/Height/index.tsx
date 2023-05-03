@@ -18,10 +18,16 @@ const Height: React.FC<ProgressProps> = ({ handleProgressChange }) => {
     };
 
     const handleHeightChange = (event: React.ChangeEvent<HTMLInputElement>, type: string): void => {
-        if (event.target.value === '') {
+        const value = event.target.value;
+        if (value === '') {
             return;
         }
-        setHeight(parseInt(event.target.value));
+
+        const height = parseInt(value);
+
+        if (!isNaN(height)) {
+            setHeight(height);
+        };
     };
 
     return (

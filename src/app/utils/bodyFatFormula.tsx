@@ -1,4 +1,3 @@
-import { FormValues } from "../types/form";
 import { BodyCompositionResult } from '../types/bodyFatTypes';
 
 const calculateBodyFatPercentage = (formValues: any): BodyCompositionResult => {

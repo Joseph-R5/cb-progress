@@ -1,10 +1,8 @@
-import calculateBodyFatPercentage from "./bodyFatFormula";
 import { getWeightDates } from "./calculateWeightJourney";
 import generateBodyFatResults from "./calculatorResultsGenerator";
-import { convertLastDate, getDaySuffix } from "./dateFormatter";
+import { convertLastDate } from "./dateFormatter";
 import { getBodyFat } from "./getBodyFatPercentage";
 import { calculateCaloriesToLoseWeight } from "./getCaloriesPerDay";
-import { getTargetWeight } from "./getTargetWeight";
 
 const MILD = 'mild';
 const RECOMMENDED = 'recommended';
@@ -12,16 +10,17 @@ const EXTREME = 'extreme';
 
 const getMetrics = (bodyFatPercentage: any, gender: any, setting: any) => {
     let result, goal;
-    if (bodyFatPercentage > 20) {
-        result = 'cut';
-        goal = gender === 'male' ? '10%' : '25%';
+
+    if (gender === 'male') {
+      goal = bodyFatPercentage > 18 ? '10%' : '20%';
+      result = goal === '20%' ? 'cut' : 'bulk';
     } else {
-        result = 'bulk';
-        goal = gender === 'male' ? '20%' : '35%';
+      goal = bodyFatPercentage > 25 ? '20%' : '35%';
+      result = goal === '35%' ? 'cut' : 'bulk';
     }
 
     return { result, goal };
-};
+  };
 
 const getTargets = (data: any, setting: any, isOnCut: boolean) => {
     let kcalPerDay = 0, weightLostPerWeek = 0;
@@ -50,7 +49,8 @@ const generateMetrics = (data: any, setting: any) => {
     const bodyFatPercentage = getBodyFat(data);
     const { goal } = getMetrics(bodyFatPercentage, data.gender, setting);
     const { kcalPerDay, weightLostPerWeek } = getTargets(data, setting, bodyFatPercentage > 20);
-    const weightDates = getWeightDates(bodyFatPercentage, data.weight, 75, setting);
+    const targetWeight = bodyFatPercentage < parseFloat(goal) ? data.weight + 5 : data.weight - 5;
+    const weightDates = getWeightDates(bodyFatPercentage, data.weight, targetWeight, setting, data.gender);
     const lastDate = weightDates?.slice(-1)[0]?.date;
 
     return [{
@@ -70,29 +70,33 @@ const generateMetrics = (data: any, setting: any) => {
     ]
 };
 
-const shouldCut = (data: any) => {
-    const { bodyFatPercentage } = calculateBodyFatPercentage(data);
-    const { result } = getMetrics(bodyFatPercentage, data.gender, 'recommended');
-    return result === 'cut';
+const shouldCut = (bodyFat: number, gender: 'male' | 'female') => {
+    if (gender === 'male') {
+        return bodyFat > 18
+    }
+
+    return bodyFat > 25;
 }
 
 export const getResultsFormattedData = (data: any) => {
     const bodyFat = getBodyFat(data);
+    const { goal } = getMetrics(bodyFat, data.gender, MILD);
+    const targetWeight = bodyFat < parseFloat(goal) ? data.weight + 5 : data.weight - 5;
 
     return {
-        CUT: shouldCut(data),
+        CUT: shouldCut(bodyFat, data.gender),
         BODY_FAT: bodyFat,
         MILD: {
             metrics: generateMetrics(data, MILD),
-            weightDates: getWeightDates(bodyFat, data.weight, 75, MILD)
+            weightDates: getWeightDates(bodyFat, data.weight, targetWeight, MILD, data.gender)
         },
         RECOMMENDED: {
             metrics: generateMetrics(data, RECOMMENDED),
-            weightDates: getWeightDates(bodyFat, data.weight, 75, RECOMMENDED)
+            weightDates: getWeightDates(bodyFat, data.weight, targetWeight, RECOMMENDED, data.gender)
         },
         EXTREME: {
             metrics: generateMetrics(data, EXTREME),
-            weightDates: getWeightDates(bodyFat, data.weight, 75, EXTREME)
+            weightDates: getWeightDates(bodyFat, data.weight, targetWeight, EXTREME, data.gender)
         },
         BODY_COMPOSITION: generateBodyFatResults(data)
     };

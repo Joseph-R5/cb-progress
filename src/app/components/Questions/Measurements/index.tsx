@@ -13,22 +13,26 @@ const Measurements: React.FC<ProgressProps> = ({ handleProgressChange, gender })
     const [waist, setWaist] = useState<number>();
     const [neck, setNeck] = useState<number>();
     const [hip, setHip] = useState<number>();
-    const [units, setUnits] = useState<HeightUnits>('cm');
     const [error, setError] = useState<boolean>(false);
 
     const handleMeasurementChange = (type: string, event: React.ChangeEvent<HTMLInputElement>) => {
-        switch (type) {
-            case WAIST:
-                setWaist(parseInt(event.target.value))
-                break;
-            case NECK:
-                setNeck(parseInt(event.target.value));
-                break;
-            case HIP:
-                setHip(parseInt(event.target.value));
-                break;
-            default:
-                break;
+        const value = event.target.value;
+        const intValue = parseInt(value);
+
+        if (!isNaN(intValue)) {
+            switch (type) {
+                case WAIST:
+                    setWaist(intValue)
+                    break;
+                case NECK:
+                    setNeck(intValue);
+                    break;
+                case HIP:
+                    setHip(intValue);
+                    break;
+                default:
+                    break;
+            }
         }
     };
 
